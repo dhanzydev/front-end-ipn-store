@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <router-view name="NavbarApp"></router-view>s
+  <router-view name="NavbarApp"></router-view>
   <RouterView />
 </template>
 
