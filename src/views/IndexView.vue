@@ -95,7 +95,7 @@
   <div class="bg-location mt-5">
     <div class="container py-5">
       <div class="row">
-        <div class="col-lg-6 col-12">
+        <div class="col-lg-6 col-12 order-2 order-lg-0">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.5424201288801!2d112.58127254596533!3d-7.427646000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78098526ac4dab%3A0x2a5f411352cd3c0f!2sCV.Bambang%20Jaya!5e0!3m2!1sen!2sid!4v1676303578369!5m2!1sen!2sid"
             style="border: 0"
@@ -106,7 +106,7 @@
             height="620"
           ></iframe>
         </div>
-        <div class="col-lg-6 col-12">
+        <div class="col-lg-6 col-12 order-1 order-lg-0">
           <h2 class="fw-bold">Kunjungi Toko Offline Kami</h2>
           <p class="fw-medium address mt-5">
             Griya Krian Residence blok A Lotus No. 25,Krian, Sidoarjo,Jawa
