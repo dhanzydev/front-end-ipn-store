@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import NavbarApp from "../components/NavbarApp.vue";
+import FooterApp from "../components/FooterApp.vue";
 
 import Index from "@/views/IndexView.vue";
 
@@ -11,7 +12,8 @@ const router = createRouter({
       path: "/",
       name: "index",
       components: {
-        NavbarApp,
+        navbar: NavbarApp,
+        footer: FooterApp,
         default: Index,
       },
     },
