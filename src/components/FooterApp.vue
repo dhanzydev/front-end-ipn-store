@@ -30,7 +30,8 @@
             <img
               src="/assets/images/logo.png"
               alt="Logo"
-              class="img-fluid w-50 mb-4"
+              class="mb-4"
+              width="100"
             />
             <p>
               Situs pusat perlengkapan peralatan industri dengan kualitas

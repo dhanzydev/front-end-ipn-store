@@ -47,7 +47,9 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-black" to="/">Produk</router-link>
+            <router-link class="nav-link text-black" to="/produk"
+              >Produk</router-link
+            >
           </li>
           <li class="nav-item">
             <router-link class="nav-link text-black" to="/"
