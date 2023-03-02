@@ -2,17 +2,21 @@
   <section class="detail-product">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mb-5 mb-md-0">
           <CarouselProduct />
         </div>
         <div class="col-12 col-lg-6">
           <div class="product">
             <p class="fs-3 fw-medium">Baut Ukuran 15cm</p>
             <p class="price fs-2 fw-bold">Rp. 15.000</p>
-            <div class="card p-4">
+            <div class="card p-4 border-opacity-75 border-2">
               <div class="card-body">
-                <div class="d-flex justify-content-between">
-                  <div class="left">
+                <div class="row">
+                  <div class="col-12 col-md-8">
+                    <p class="fw-medium">Total Harga:</p>
+                    <p class="total-price fw-medium fs-3">Rp. 15000</p>
+                  </div>
+                  <div class="col-12 col-md-4 mt-4 mt-md-0">
                     <p class="fw-medium">Atur Jumlah</p>
                     <div class="quantity-product">
                       <div class="input-group">
@@ -21,7 +25,6 @@
                           type="button"
                           id="button-addon2"
                           @click="dercrementQuantity"
-                          :disabled="isDisabled"
                         >
                           <font-awesome-icon icon="fa-solid fa-minus" />
                         </button>
@@ -42,22 +45,20 @@
                         </button>
                       </div>
                     </div>
-                    <button class="btn btn-primary mt-4">
-                      Tambahkan ke keranjang
-                    </button>
                   </div>
-                  <div class="right">
-                    <p class="fw-medium">Total Harga:</p>
-                    <p class="total-price fw-medium fs-3">Rp. 15000</p>
-                    <button class="btn btn-success">Beli sekarang</button>
-                  </div>
+                </div>
+                <div class="btn-product mt-5">
+                  <button class="btn btn-success me-4">Beli sekarang</button
+                  ><button class="btn btn-primary mt-3 mt-md-0">
+                    Tambahkan ke keranjang
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="desvription-product mt-5">
+      <div class="description-product mt-5">
         <p class="fs-3 text-primary">Deskripsi</p>
         <p class="fw-medium">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed debitis
@@ -102,33 +103,20 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import CarouselProduct from "../components/CarouselProduct.vue";
 
-const quantity = ref(0);
-const isDisabled = ref(false);
+const quantity = ref(1);
 
 function incrementQuantity() {
   quantity.value++;
 }
 
 function dercrementQuantity() {
-  quantity.value--;
-}
-
-const inputQuantity = computed(() => {
-  if (quantity.value < 0) {
-    return {
-      quantity: (quantity.value = 0),
-      isDisabled: (isDisabled.value = true),
-    };
-  } else {
-    return {
-      quantity: quantity.value,
-      isDisabled: (isDisabled.value = false),
-    };
+  if (quantity.value > 1) {
+    quantity.value--;
   }
-});
+}
 </script>
 
 <style scope>
@@ -138,5 +126,23 @@ const inputQuantity = computed(() => {
 
 .quantity-product .input-group {
   width: 130px;
+}
+
+@media (max-width: 992px) {
+  .detail-product {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-product {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  .detail-product {
+    margin-top: 100px;
+  }
 }
 </style>

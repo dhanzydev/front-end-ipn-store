@@ -46,7 +46,7 @@
                 name-product="Baut 15cm"
                 category-product="Baut"
                 price-product="15000"
-                to="/"
+                to="/detail-produk"
               />
             </div>
             <div class="col-lg-3 col-6 p-3">
@@ -55,7 +55,7 @@
                 name-product="Baut 15cm"
                 category-product="Baut"
                 price-product="15000"
-                to="/"
+                to="/detail-produk"
               />
             </div>
             <div class="col-lg-3 col-6 p-3">
@@ -64,7 +64,7 @@
                 name-product="Baut 15cm"
                 category-product="Baut"
                 price-product="15000"
-                to="/"
+                to="/detail-produk"
               />
             </div>
             <div class="col-lg-3 col-6 p-3">
@@ -73,7 +73,7 @@
                 name-product="Baut 15cm"
                 category-product="Baut"
                 price-product="15000"
-                to="/"
+                to="/detail-produk"
               />
             </div>
             <div class="col-lg-3 col-6 p-3">
@@ -82,7 +82,7 @@
                 name-product="Baut 15cm"
                 category-product="Baut"
                 price-product="15000"
-                to="/"
+                to="/detail-produk"
               />
             </div>
             <div class="col-lg-3 col-6 p-3">
@@ -91,7 +91,7 @@
                 name-product="Baut 15cm"
                 category-product="Baut"
                 price-product="15000"
-                to="/"
+                to="/detail-produk"
               />
             </div>
           </div>
@@ -127,5 +127,23 @@ import CardProduct from "../components/CardProduct.vue";
 <style scoped>
 .product {
   margin-top: 200px;
+}
+
+@media (max-width: 992px) {
+  .product {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  .product {
+    margin-top: 100px;
+  }
 }
 </style>

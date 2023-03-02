@@ -1,18 +1,18 @@
 <template>
-  <div class="card">
-    <img :src="src" class="card-img-top" />
-    <div class="card-body">
-      <p class="fw-bold">{{ nameProduct }}</p>
-      <p class="card-text">
-        <small class="text-muted">{{ categoryProduct }}</small>
-      </p>
-      <router-link
-        class="fs-3 text-primary fw-medium text-decoration-none"
-        :to="to"
-        >Rp. {{ priceProduct }}</router-link
-      >
+  <router-link :to="to" class="text-decoration-none">
+    <div class="card">
+      <img :src="src" class="card-img-top" />
+      <div class="card-body">
+        <p class="fw-bold text-black">{{ nameProduct }}</p>
+        <p class="card-text">
+          <small class="text-muted">{{ categoryProduct }}</small>
+        </p>
+        <p class="fs-3 text-primary fw-medium text-decoration-none">
+          Rp. {{ priceProduct }}
+        </p>
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup>

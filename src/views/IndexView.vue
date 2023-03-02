@@ -163,7 +163,19 @@ import CardProduct from "../components/CardProduct.vue";
   font-size: 20px;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 992px) {
+  .bg-home {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bg-home {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 576px) {
   .bg-home {
     margin-top: 100px;
   }
