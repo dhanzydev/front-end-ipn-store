@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import NavbarApp from "../components/NavbarApp.vue";
 import FooterApp from "../components/FooterApp.vue";
 
 import Index from "@/views/IndexView.vue";
@@ -15,7 +14,6 @@ const router = createRouter({
       path: "/",
       name: "index",
       components: {
-        navbar: NavbarApp,
         footer: FooterApp,
         default: Index,
       },
@@ -24,7 +22,6 @@ const router = createRouter({
       path: "/produk",
       name: "Product",
       components: {
-        navbar: NavbarApp,
         footer: FooterApp,
         default: Product,
       },
@@ -34,7 +31,6 @@ const router = createRouter({
       path: "/detail-produk",
       name: "DetailProduct",
       components: {
-        navbar: NavbarApp,
         footer: FooterApp,
         default: DetailProduct,
       },
@@ -43,7 +39,6 @@ const router = createRouter({
       path: "/keranjang",
       name: "Cart",
       components: {
-        navbar: NavbarApp,
         footer: FooterApp,
         default: Cart,
       },

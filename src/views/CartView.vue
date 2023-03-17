@@ -1,4 +1,5 @@
 <template>
+  <NavbarApp />
   <section class="cart">
     <div class="container">
       <ProductCart />
@@ -87,6 +88,7 @@
 </template>
 
 <script setup>
+import NavbarApp from "../components/NavbarApp.vue";
 import ProductCart from "../components/ProductCart.vue";
 </script>
 

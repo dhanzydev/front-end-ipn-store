@@ -1,4 +1,5 @@
 <template>
+  <NavbarApp />
   <section class="detail-product">
     <div class="container">
       <div class="row">
@@ -105,6 +106,7 @@
 <script setup>
 import { ref } from "vue";
 import CarouselProduct from "../components/CarouselProduct.vue";
+import NavbarApp from "../components/NavbarApp.vue";
 
 const quantity = ref(1);
 

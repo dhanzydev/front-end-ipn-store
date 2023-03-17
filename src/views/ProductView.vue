@@ -1,4 +1,5 @@
 <template>
+  <NavbarApp />
   <section class="product">
     <div class="container">
       <div class="row">
@@ -121,6 +122,7 @@
 </template>
 
 <script setup>
+import NavbarApp from "../components/NavbarApp.vue";
 import CardProduct from "../components/CardProduct.vue";
 </script>
 

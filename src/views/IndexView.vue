@@ -1,4 +1,5 @@
 <template>
+  <NavbarApp />
   <section>
     <div class="container bg-home rounded-2">
       <div class="text-container p-5 text-light">
@@ -134,6 +135,7 @@
 <script setup>
 import CardCategory from "../components/CardCategory.vue";
 import CardProduct from "../components/CardProduct.vue";
+import NavbarApp from "../components/NavbarApp.vue";
 </script>
 <style scoped>
 .bg-home {
