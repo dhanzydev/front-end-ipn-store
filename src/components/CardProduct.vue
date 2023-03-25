@@ -8,7 +8,7 @@
           <small class="text-muted">{{ categoryProduct }}</small>
         </p>
         <p class="fs-3 text-primary fw-medium text-decoration-none">
-          Rp. {{ priceProduct }}
+          {{ priceProduct }}
         </p>
       </div>
     </div>
@@ -25,4 +25,10 @@ const props = defineProps({
 });
 </script>
 
-<style></style>
+<style>
+.card-img-top {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+</style>

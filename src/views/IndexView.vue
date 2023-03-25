@@ -24,23 +24,13 @@
     <div class="container category">
       <p class="text-primary fw-bold">Kategori Produk</p>
       <div class="row">
-        <div class="col-lg-2 col-md-3 col-12">
-          <CardCategory name="Obeng" to="/" src="/assets/images/hammer.png" />
-        </div>
-        <div class="col-lg-2 col-md-3 col-12">
-          <CardCategory name="Obeng" to="/" src="/assets/images/hammer.png" />
-        </div>
-        <div class="col-lg-2 col-md-3 col-12">
-          <CardCategory name="Obeng" to="/" src="/assets/images/hammer.png" />
-        </div>
-        <div class="col-lg-2 col-md-3 col-12">
-          <CardCategory name="Obeng" to="/" src="/assets/images/hammer.png" />
-        </div>
-        <div class="col-lg-2 col-md-3 col-12">
-          <CardCategory name="Obeng" to="/" src="/assets/images/hammer.png" />
-        </div>
-        <div class="col-lg-2 col-md-3 col-12">
-          <CardCategory name="Obeng" to="/" src="/assets/images/hammer.png" />
+        <CardCategory />
+        <div class="d-flex justify-content-end">
+          <router-link
+            to="/kategori"
+            class="text-decoration-none btn btn-primary mt-5"
+            >Lihat Selengkapnya</router-link
+          >
         </div>
       </div>
     </div>
@@ -49,39 +39,16 @@
     <div class="container">
       <p class="text-primary fw-bold">Daftar Produk</p>
       <div class="row gap-lg-0">
-        <div class="col-lg-3 col-md-6 col-12 p-2">
+        <div
+          class="col-lg-3 col-md-6 col-12 p-2"
+          v-for="data in state.data"
+          :key="data.id"
+        >
           <CardProduct
-            src="/assets/images/home.png"
-            name-product="Baut 15cm"
-            category-product="Baut"
-            price-product="15000"
-            to="/"
-          />
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 p-2">
-          <CardProduct
-            src="/assets/images/home.png"
-            name-product="Baut 15cm"
-            category-product="Baut"
-            price-product="15000"
-            to="/"
-          />
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 p-2">
-          <CardProduct
-            src="/assets/images/home.png"
-            name-product="Baut 15cm"
-            category-product="Baut"
-            price-product="15000"
-            to="/"
-          />
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 p-2">
-          <CardProduct
-            src="/assets/images/home.png"
-            name-product="Baut 15cm"
-            category-product="Baut"
-            price-product="15000"
+            :src="data.cover"
+            :name-product="data.nama_produk"
+            :category-product="data.kategori.kategori"
+            :price-product="data.format_harga"
             to="/"
           />
         </div>
@@ -132,11 +99,27 @@
     </div>
   </section>
 </template>
+
 <script setup>
 import CardCategory from "../components/CardCategory.vue";
 import CardProduct from "../components/CardProduct.vue";
 import NavbarApp from "../components/NavbarApp.vue";
+
+import { reactive, onMounted } from "vue";
+
+const state = reactive({
+  data: [],
+});
+
+async function fetchData() {
+  const response = await fetch("http://127.0.0.1:8000/api/produk/home");
+  const data = await response.json();
+  state.data = data;
+}
+
+onMounted(fetchData);
 </script>
+
 <style scoped>
 .bg-home {
   margin-top: 200px;
