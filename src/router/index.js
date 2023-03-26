@@ -6,6 +6,7 @@ import Index from "@/views/IndexView.vue";
 import Product from "@/views/ProductView.vue";
 import DetailProduct from "@/views/DetailProductView.vue";
 import Cart from "@/views/CartView.vue";
+import Category from "@/views/CategoryView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,14 @@ const router = createRouter({
       components: {
         footer: FooterApp,
         default: Cart,
+      },
+    },
+    {
+      path: "/kategori",
+      name: "Category",
+      components: {
+        footer: FooterApp,
+        default: Category,
       },
     },
   ],

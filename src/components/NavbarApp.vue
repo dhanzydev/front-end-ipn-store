@@ -42,7 +42,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-black" to="/"
+            <router-link class="nav-link text-black" :to="{ name: 'Category' }"
               >Kategori</router-link
             >
           </li>

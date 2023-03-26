@@ -24,10 +24,20 @@
     <div class="container category">
       <p class="text-primary fw-bold">Kategori Produk</p>
       <div class="row">
-        <CardCategory />
+        <div
+          class="col-lg-2 col-md-3 col-12"
+          v-for="data in kategori.data"
+          :key="data.id"
+        >
+          <CardCategory
+            :src="data.gambar_kategori"
+            to="/"
+            :name-category="data.kategori"
+          />
+        </div>
         <div class="d-flex justify-content-end">
           <router-link
-            to="/kategori"
+            :to="{ name: 'Category' }"
             class="text-decoration-none btn btn-primary mt-5"
             >Lihat Selengkapnya</router-link
           >
@@ -41,7 +51,7 @@
       <div class="row gap-lg-0">
         <div
           class="col-lg-3 col-md-6 col-12 p-2"
-          v-for="data in state.data"
+          v-for="data in produk.data"
           :key="data.id"
         >
           <CardProduct
@@ -104,20 +114,23 @@
 import CardCategory from "../components/CardCategory.vue";
 import CardProduct from "../components/CardProduct.vue";
 import NavbarApp from "../components/NavbarApp.vue";
+import { useFetchProduk } from "../api/apiProduk.js";
+import { useFetchKategori } from "../api/apiKategori.js";
 
-import { reactive, onMounted } from "vue";
+import { onMounted } from "vue";
 
-const state = reactive({
-  data: [],
+const { produk, fetchDataProduk } = useFetchProduk(
+  "http://127.0.0.1:8000/api/produk/home"
+);
+
+const { kategori, fetchDataKategori } = useFetchKategori(
+  "http://127.0.0.1:8000/api/kategori/home"
+);
+
+onMounted(() => {
+  fetchDataProduk();
+  fetchDataKategori();
 });
-
-async function fetchData() {
-  const response = await fetch("http://127.0.0.1:8000/api/produk/home");
-  const data = await response.json();
-  state.data = data;
-}
-
-onMounted(fetchData);
 </script>
 
 <style scoped>

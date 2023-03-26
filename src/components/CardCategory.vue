@@ -1,42 +1,26 @@
 <template>
-  <div
-    class="col-lg-2 col-md-3 col-12"
-    v-for="data in state.data"
-    :key="data.id"
-  >
+  <router-link :to="to" class="text-decoration-none">
     <div class="card mb-3" style="max-width: 540px">
       <div class="d-flex align-items-center">
         <div class="img-card">
           <img
-            :src="data.gambar_kategori"
+            :src="src"
             class="rounded-start img-category"
             alt="Icon Category Product"
           />
         </div>
-        <div class="card-body">
-          <router-link class="card-title text-decoration-none" to="">{{
-            data.kategori
-          }}</router-link>
-        </div>
+        <div class="card-body">{{ nameCategory }}</div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup>
-import { reactive, onMounted } from "vue";
-
-const state = reactive({
-  data: [],
+const props = defineProps({
+  to: { type: String, required: true },
+  src: { type: String, required: true },
+  nameCategory: { type: String, required: true },
 });
-
-async function fetchData() {
-  const response = await fetch("http://127.0.0.1:8000/api/kategori/home");
-  const data = await response.json();
-  state.data = data;
-}
-
-onMounted(fetchData);
 </script>
 
 <style scoped>
