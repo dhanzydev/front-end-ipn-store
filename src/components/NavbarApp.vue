@@ -10,15 +10,20 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Cari Barang"
-          aria-label="Cari Barang"
+          placeholder="Cari Produk"
+          aria-label="Cari Produk"
           aria-describedby="button-addon2"
+          v-model="search"
         />
-        <button class="btn btn-primary" type="button" id="button-addon2">
+        <router-link
+          class="btn btn-primary"
+          type="button"
+          id="button-addon2"
+          :to="link"
+        >
           <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-        </button>
+        </router-link>
       </div>
-
       <button
         class="navbar-toggler bg-white"
         type="button"
@@ -82,13 +87,23 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const isOpen = ref(false);
 
 const toggleNavbar = () => {
   isOpen.value = !isOpen.value;
 };
+
+const link = ref("");
+const search = ref("");
+
+// console.log(search.value);
+function searchProduct() {
+  link.value = `/produk/${search.value}`;
+}
+
+watch(search, searchProduct);
 </script>
 
 <style>

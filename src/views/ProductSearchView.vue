@@ -36,8 +36,8 @@
               />
             </div>
             <Bootstrap5Pagination
-              :data="produk.data"
-              @pagination-change-page="fetchDataProduk"
+              :data="produkSearch.data"
+              @pagination-change-page="fetchDataProdukSearch"
               class="d-flex justify-content-end mt-5"
             />
           </div>
@@ -51,21 +51,40 @@
 import NavbarApp from "../components/NavbarApp.vue";
 import CardProduct from "../components/CardProduct.vue";
 import { Bootstrap5Pagination } from "laravel-vue-pagination";
-import { useFetchAllProduk } from "../api/apiProduk";
+import { useSearchProduk, useFetchAllProduk } from "../api/apiProduk";
 import { useFetchKategori } from "../api/apiKategori.js";
 
-import { computed, onMounted, ref, watch } from "vue";
+import { onMounted, ref, computed, watch } from "vue";
 
+// console.log(this.$route.params.id);
+const props = defineProps({
+  produk: {
+    required: true,
+    type: String,
+  },
+});
+
+const kategoriFilter = ref("");
+
+const { produkSearch, fetchDataProdukSearch } = useSearchProduk(props.produk);
 const { produk, fetchDataProduk } = useFetchAllProduk();
 const { kategori, fetchDataKategori } = useFetchKategori(
   "http://127.0.0.1:8000/api/kategori/all"
 );
 
-const kategoriFilter = ref("");
+// const filterData = computed(() => {
+//   if (kategoriFilter.value === "" && props.produk) {
+//     return produk.data.data;
+//   } else {
+//     return produk.data.data.filter(
+//       (data) => data.kategori.slug === kategoriFilter.value
+//     );
+//   }
+// });
 
 const filterData = computed(() => {
-  if (kategoriFilter.value === "") {
-    return produk.data.data;
+  if (kategoriFilter.value === "" && props.produk) {
+    return produkSearch.data.data;
   } else {
     return produk.data.data.filter(
       (data) => data.kategori.slug === kategoriFilter.value

@@ -9,7 +9,7 @@
             alt="Icon Category Product"
           />
         </div>
-        <div class="card-body">{{ nameCategory }}</div>
+        <div class="card-body text-black">{{ nameCategory }}</div>
       </div>
     </div>
   </router-link>

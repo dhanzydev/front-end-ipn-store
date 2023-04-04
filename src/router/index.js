@@ -4,6 +4,7 @@ import FooterApp from "../components/FooterApp.vue";
 
 import Index from "@/views/IndexView.vue";
 import Product from "@/views/ProductView.vue";
+import ProductSearch from "@/views/ProductSearchView.vue";
 import DetailProduct from "@/views/DetailProductView.vue";
 import Cart from "@/views/CartView.vue";
 import Category from "@/views/CategoryView.vue";
@@ -26,6 +27,15 @@ const router = createRouter({
         footer: FooterApp,
         default: Product,
       },
+    },
+    {
+      path: "/produk/:produk",
+      name: "ProductSearch",
+      components: {
+        footer: FooterApp,
+        default: ProductSearch,
+      },
+      props: true,
     },
     // Nanti ganti nama menjadi produk/nama-produk
     {
