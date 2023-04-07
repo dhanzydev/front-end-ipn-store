@@ -1,6 +1,6 @@
 <template>
   <router-link :to="to" class="text-decoration-none">
-    <div class="card mb-3" style="max-width: 540px">
+    <div class="card h-100" style="max-width: 540px">
       <div class="d-flex align-items-center">
         <div class="img-card">
           <img
@@ -29,9 +29,15 @@ const props = defineProps({
   gap: 31px;
 }
 
+/* .img-card {
+  display: flex;
+  align-items: center;
+  height: 100%;
+} */
+
 .img-category {
   width: 100%;
-  height: 90px;
+  height: 70px;
   object-fit: cover;
 }
 
