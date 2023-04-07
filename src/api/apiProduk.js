@@ -54,3 +54,24 @@ export function useSearchProduk(search) {
 
   return { produkSearch, fetchDataProdukSearch };
 }
+
+export function useFetchDetailProduk(id) {
+  const produk = reactive({
+    data: [],
+  });
+
+  const fetchDataProduk = async () => {
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/produk/detail/${id}`
+    );
+
+    const data = await response.json();
+    produk.data = data;
+
+    console.log(data);
+  };
+
+  fetchDataProduk();
+
+  return { produk, fetchDataProduk };
+}

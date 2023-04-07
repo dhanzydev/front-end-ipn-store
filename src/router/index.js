@@ -39,12 +39,13 @@ const router = createRouter({
     },
     // Nanti ganti nama menjadi produk/nama-produk
     {
-      path: "/detail-produk",
+      path: "/detail-produk/:id",
       name: "DetailProduct",
       components: {
         footer: FooterApp,
         default: DetailProduct,
       },
+      props: true,
     },
     {
       path: "/keranjang",

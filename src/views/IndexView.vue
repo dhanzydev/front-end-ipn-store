@@ -59,7 +59,7 @@
             :name-product="data.nama_produk"
             :category-product="data.kategori.kategori"
             :price-product="data.format_harga"
-            to="/"
+            :to="`/detail-produk/${data.id}`"
           />
         </div>
       </div>
