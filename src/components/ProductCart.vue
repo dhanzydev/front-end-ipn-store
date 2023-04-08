@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-2 col-4 object-fit-cover">
           <img
-            src="/assets/images/home.png"
+            :src="cover"
             alt=""
             class="img-fluid w-100 h-100 object-fit-cover rounded"
           />
@@ -12,8 +12,8 @@
         <div class="col-lg-10 col-8">
           <div class="row">
             <div class="col-lg-7">
-              <p class="product-name">Baut Ukuran 15cm</p>
-              <p class="product-price">Rp. 30.000</p>
+              <p class="product-name">{{ nama_produk }}</p>
+              <p class="product-price">{{ price }}</p>
             </div>
             <div class="col-lg-3 col-8">
               <p class="fw-medium">Atur Jumlah</p>
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="col-lg-2 col-4">
-              <button class="btn text-danger remove-btn">
+              <button class="btn text-danger remove-btn" @click="remove">
                 <font-awesome-icon icon="fa-solid fa-trash" class="me-2" />Hapus
               </button>
             </div>
@@ -59,17 +59,68 @@
 
 <script setup>
 import { ref } from "vue";
+import { useCartStore } from "../stores/cart";
+const store = useCartStore();
 
-const quantity = ref(1);
+const props = defineProps({
+  nama_produk: {
+    type: String,
+    required: true,
+  },
+  harga: {
+    type: Number,
+    required: true,
+  },
+  jumlah: {
+    type: Number,
+    required: true,
+  },
+  cover: {
+    type: String,
+    required: true,
+  },
+  max_quantity: {
+    type: Number,
+    required: true,
+  },
+  harga_satuan: {
+    type: Number,
+    required: true,
+  },
+});
+
+const quantity = ref(props.jumlah);
+const price = ref(
+  new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  }).format(props.harga)
+);
+
+const hargaSatuan = ref(parseInt(props.harga_satuan));
 
 function incrementQuantity() {
-  quantity.value++;
+  if (quantity.value < props.max_quantity) {
+    quantity.value++;
+    price.value = new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(hargaSatuan.value * quantity.value);
+  }
+  // totalPrice.bool = true;
 }
-
 function dercrementQuantity() {
   if (quantity.value > 1) {
     quantity.value--;
+    price.value = new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(hargaSatuan.value * quantity.value);
   }
+}
+
+function remove() {
+  store.removeProduct(props.id);
 }
 </script>
 

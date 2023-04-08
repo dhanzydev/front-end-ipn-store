@@ -67,8 +67,6 @@ export function useFetchDetailProduk(id) {
 
     const data = await response.json();
     produk.data = data;
-
-    console.log(data);
   };
 
   fetchDataProduk();

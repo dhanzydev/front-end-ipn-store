@@ -1,9 +1,15 @@
 <template>
   <NavbarApp />
   <section class="cart">
-    <div class="container">
-      <ProductCart />
-      <ProductCart />
+    <div class="container" v-for="data in cart" :key="data.id">
+      <ProductCart
+        :cover="data.cover"
+        :harga="data.harga"
+        :nama_produk="data.nama_produk"
+        :jumlah="data.jumlah"
+        :max_quantity="data.max_quantity"
+        :harga_satuan="data.harga_satuan"
+      />
     </div>
   </section>
   <section class="total-price">
@@ -90,6 +96,11 @@
 <script setup>
 import NavbarApp from "../components/NavbarApp.vue";
 import ProductCart from "../components/ProductCart.vue";
+import { useCartStore } from "../stores/cart";
+import { computed } from "vue";
+const store = useCartStore();
+
+const cart = computed(() => store.getProduct);
 </script>
 
 <style scoped>

@@ -74,8 +74,16 @@
                   </div>
                 </div>
                 <div class="btn-product mt-5">
-                  <button class="btn btn-success me-4">Beli sekarang</button
-                  ><button class="btn btn-primary mt-3 mt-sm-0">
+                  <router-link
+                    to="/keranjang"
+                    @click="saveProduct"
+                    class="btn btn-success me-4"
+                    >Beli sekarang</router-link
+                  >
+                  <button
+                    class="btn btn-primary mt-3 mt-sm-0"
+                    @click="saveProduct"
+                  >
                     Tambahkan ke keranjang
                   </button>
                 </div>
@@ -93,11 +101,13 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, onUnmounted, reactive, ref } from "vue";
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import NavbarApp from "../components/NavbarApp.vue";
 import { useFetchDetailProduk } from "../api/apiProduk";
+import { useCartStore } from "../stores/cart";
+const store = useCartStore();
 
 const props = defineProps({
   id: {
@@ -117,6 +127,16 @@ const totalPrice = reactive({
 const settings = ref({
   itemsToShow: 1,
   snapAlign: "center",
+});
+
+const product = reactive({
+  id: 0,
+  nama_produk: "",
+  harga: 0,
+  jumlah: 0,
+  cover: "",
+  max_quantity: 0,
+  harga_satuan: 0,
 });
 
 function incrementQuantity() {
@@ -141,8 +161,24 @@ function dercrementQuantity() {
   totalPrice.bool = true;
 }
 
+const saveProduct = () => {
+  product.id = produk.data.id;
+  product.nama_produk = produk.data.nama_produk;
+  product.harga = produk.data.harga * quantity.value;
+  product.jumlah = quantity.value;
+  product.cover = produk.data.cover;
+  product.max_quantity = produk.data.jumlah;
+  product.harga_satuan = produk.data.harga;
+
+  store.addProduct(product);
+};
+
 onMounted(() => {
   fetchDataProduk();
+});
+
+onUnmounted(() => {
+  saveProduct();
 });
 </script>
 

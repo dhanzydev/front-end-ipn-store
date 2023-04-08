@@ -62,7 +62,10 @@
             >
           </li>
           <li class="nav-item d-none d-lg-block">
-            <router-link class="nav-link text-black position-relative" to="/">
+            <router-link
+              class="nav-link text-black position-relative"
+              to="/keranjang"
+            >
               <span
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
               >
@@ -76,7 +79,7 @@
             </router-link>
           </li>
           <li class="nav-item d-inline-block d-lg-none">
-            <router-link class="nav-link text-black" to="/"
+            <router-link class="nav-link text-black" to="/keranjang"
               >Keranjang</router-link
             >
           </li>

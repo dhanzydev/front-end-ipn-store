@@ -27,6 +27,16 @@ const router = createRouter({
         footer: FooterApp,
         default: Product,
       },
+      props: false,
+    },
+    {
+      path: "/produk/:slug",
+      name: "ProdukCategory",
+      components: {
+        footer: FooterApp,
+        default: Product,
+      },
+      props: true,
     },
     {
       path: "/produk/:produk",
@@ -37,7 +47,6 @@ const router = createRouter({
       },
       props: true,
     },
-    // Nanti ganti nama menjadi produk/nama-produk
     {
       path: "/detail-produk/:id",
       name: "DetailProduct",

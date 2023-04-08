@@ -14,6 +14,7 @@
               id="flexRadioDefault1"
               :value="data.slug"
               v-model="kategoriFilter"
+              :checked="kategoriFilter === data.slug"
             />
             <label class="form-check-label" for="flexRadioDefault1">
               {{ data.kategori }}
@@ -21,6 +22,28 @@
           </div>
         </div>
         <div class="col-lg-10">
+          <!-- <div v-if="props.slug">
+            <div class="row">
+              <div
+                class="col-lg-3 col-6 p-3"
+                v-for="data in filterKategori"
+                :key="data.id"
+              >
+                <CardProduct
+                  :src="data.cover"
+                  :name-product="data.nama_produk"
+                  :category-product="data.kategori.kategori"
+                  :price-product="data.format_harga"
+                  :to="`/detail-produk/${data.id}`"
+                />
+              </div>
+              <Bootstrap5Pagination
+                :data="produk.data"
+                @pagination-change-page="fetchDataProduk"
+                class="d-flex justify-content-end mt-5"
+              />
+            </div>
+          </div> -->
           <div class="row">
             <div
               class="col-lg-3 col-6 p-3"
@@ -61,20 +84,52 @@ const { kategori, fetchDataKategori } = useFetchKategori(
   "http://127.0.0.1:8000/api/kategori/all"
 );
 
+//Get parameter from url
+const props = defineProps({
+  slug: {
+    type: String,
+  },
+});
+
 const kategoriFilter = ref("");
+
+const setKategoriFilter = () => {
+  if (props.slug !== undefined) {
+    kategoriFilter.value = props.slug;
+  } else {
+    kategoriFilter.value = "";
+  }
+};
+
+setKategoriFilter();
+// const kategoriData = ref(props.slug);
+// console.log(kategoriData.value);
+
+//Display data from parameter and make filter from radio input
+
+function filter(data) {
+  if (kategoriFilter.value !== undefined) {
+    return data.kategori.slug === kategoriFilter.value;
+  }
+  return data.kategori.slug === kategoriFilter.value;
+}
 
 const filterData = computed(() => {
   if (kategoriFilter.value === "") {
     return produk.data.data;
   } else {
-    return produk.data.data.filter(
-      (data) => data.kategori.slug === kategoriFilter.value
-    );
+    return produk.data.data.filter(filter);
   }
 });
 
+// const filterKategori = computed(() => {
+//   return produk.data.data.filter(filter);
+// });
+
 onMounted(() => {
-  watch(kategoriFilter);
+  watch(kategoriFilter, () => {
+    fetchDataProduk();
+  });
   fetchDataKategori();
 });
 </script>

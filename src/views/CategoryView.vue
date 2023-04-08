@@ -4,13 +4,13 @@
     <div class="container">
       <div class="row">
         <div
-          class="col-lg-2 col-md-3 col-12"
+          class="col-lg-2 col-md-3 mb-3 col-12"
           v-for="data in kategori.data.data"
           :key="data.id"
         >
           <CardCategory
             :src="data.gambar_kategori"
-            to="/"
+            :to="`/produk/${data.slug}`"
             :name-category="data.kategori"
           />
         </div>

@@ -32,7 +32,7 @@
                 :name-product="data.nama_produk"
                 :category-product="data.kategori.kategori"
                 :price-product="data.format_harga"
-                to="/detail-produk"
+                :to="`/detail-produk/${data.id}`"
               />
             </div>
             <Bootstrap5Pagination
@@ -71,16 +71,6 @@ const { produk, fetchDataProduk } = useFetchAllProduk();
 const { kategori, fetchDataKategori } = useFetchKategori(
   "http://127.0.0.1:8000/api/kategori/all"
 );
-
-// const filterData = computed(() => {
-//   if (kategoriFilter.value === "" && props.produk) {
-//     return produk.data.data;
-//   } else {
-//     return produk.data.data.filter(
-//       (data) => data.kategori.slug === kategoriFilter.value
-//     );
-//   }
-// });
 
 const filterData = computed(() => {
   if (kategoriFilter.value === "" && props.produk) {
