@@ -116,8 +116,11 @@ import CardProduct from "../components/CardProduct.vue";
 import NavbarApp from "../components/NavbarApp.vue";
 import { useFetchProduk } from "../api/apiProduk.js";
 import { useFetchKategori } from "../api/apiKategori.js";
+import { useCartStore } from "../stores/cart";
 
 import { onMounted } from "vue";
+const store = useCartStore();
+store.setUserID();
 
 const { produk, fetchDataProduk } = useFetchProduk(
   "http://127.0.0.1:8000/api/produk/home"

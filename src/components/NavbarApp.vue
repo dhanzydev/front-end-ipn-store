@@ -64,12 +64,12 @@
           <li class="nav-item d-none d-lg-block">
             <router-link
               class="nav-link text-black position-relative"
-              to="/keranjang"
+              to="/cart"
             >
               <span
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
               >
-                10
+                {{ props.jumlahProduk }}
                 <span class="visually-hidden">unread messages</span>
               </span>
               <font-awesome-icon
@@ -79,7 +79,7 @@
             </router-link>
           </li>
           <li class="nav-item d-inline-block d-lg-none">
-            <router-link class="nav-link text-black" to="/keranjang"
+            <router-link class="nav-link text-black" to="/cart"
               >Keranjang</router-link
             >
           </li>
@@ -105,6 +105,13 @@ const search = ref("");
 function searchProduct() {
   link.value = `/produk/${search.value}`;
 }
+
+const props = defineProps({
+  jumlahProduk: {
+    type: Number,
+    default: 0,
+  },
+});
 
 watch(search, searchProduct);
 </script>

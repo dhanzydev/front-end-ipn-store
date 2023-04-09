@@ -74,15 +74,12 @@
                   </div>
                 </div>
                 <div class="btn-product mt-5">
-                  <router-link
-                    to="/keranjang"
-                    @click="saveProduct"
-                    class="btn btn-success me-4"
-                    >Beli sekarang</router-link
-                  >
+                  <button @click="buyNow" class="btn btn-success me-4">
+                    Beli sekarang
+                  </button>
                   <button
                     class="btn btn-primary mt-3 mt-sm-0"
-                    @click="saveProduct"
+                    @click="addProduct"
                   >
                     Tambahkan ke keranjang
                   </button>
@@ -107,6 +104,9 @@ import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import NavbarApp from "../components/NavbarApp.vue";
 import { useFetchDetailProduk } from "../api/apiProduk";
 import { useCartStore } from "../stores/cart";
+import useCart from "../api/apiCart";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const store = useCartStore();
 
 const props = defineProps({
@@ -130,13 +130,14 @@ const settings = ref({
 });
 
 const product = reactive({
-  id: 0,
+  id_user: 0,
+  id_produk: 0,
   nama_produk: "",
-  harga: 0,
-  jumlah: 0,
+  harga_produk: 0,
+  jumlah_produk: 0,
+  total_harga: 0,
   cover: "",
   max_quantity: 0,
-  harga_satuan: 0,
 });
 
 function incrementQuantity() {
@@ -161,24 +162,34 @@ function dercrementQuantity() {
   totalPrice.bool = true;
 }
 
-const saveProduct = () => {
-  product.id = produk.data.id;
+const { errors, storeProduct } = useCart();
+
+const addProduct = async () => {
+  product.id_user = store.getUserID;
+  product.id_produk = produk.data.id;
   product.nama_produk = produk.data.nama_produk;
-  product.harga = produk.data.harga * quantity.value;
-  product.jumlah = quantity.value;
+  product.harga_produk = produk.data.harga;
+  product.jumlah_produk = quantity.value;
+  product.total_harga = produk.data.harga * quantity.value;
   product.cover = produk.data.cover;
   product.max_quantity = produk.data.jumlah;
-  product.harga_satuan = produk.data.harga;
+  await storeProduct({ ...product });
+};
 
-  store.addProduct(product);
+const buyNow = async () => {
+  product.id_user = store.getUserID;
+  product.id_produk = produk.data.id;
+  product.nama_produk = produk.data.nama_produk;
+  product.harga_produk = produk.data.harga;
+  product.jumlah_produk = quantity.value;
+  product.total_harga = produk.data.harga * quantity.value;
+  product.cover = produk.data.cover;
+  await storeProduct({ ...product });
+  await router.push({ path: "/cart" });
 };
 
 onMounted(() => {
   fetchDataProduk();
-});
-
-onUnmounted(() => {
-  saveProduct();
 });
 </script>
 

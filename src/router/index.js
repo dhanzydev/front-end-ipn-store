@@ -57,8 +57,8 @@ const router = createRouter({
       props: true,
     },
     {
-      path: "/keranjang",
-      name: "Cart",
+      path: "/cart",
+      name: "cart",
       components: {
         footer: FooterApp,
         default: Cart,

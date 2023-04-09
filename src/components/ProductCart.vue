@@ -46,7 +46,10 @@
               </div>
             </div>
             <div class="col-lg-2 col-4">
-              <button class="btn text-danger remove-btn" @click="remove">
+              <button
+                class="btn text-danger remove-btn"
+                @click="deleteProductCart(id)"
+              >
                 <font-awesome-icon icon="fa-solid fa-trash" class="me-2" />Hapus
               </button>
             </div>
@@ -58,9 +61,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { useCartStore } from "../stores/cart";
+import useCart from "../api/apiCart";
+
 const store = useCartStore();
+const { errors, deleteProduct, storeProduct, totalPrice } = useCart();
 
 const props = defineProps({
   nama_produk: {
@@ -68,11 +74,19 @@ const props = defineProps({
     required: true,
   },
   harga: {
-    type: Number,
+    type: String,
     required: true,
   },
   jumlah: {
-    type: Number,
+    type: String,
+    required: true,
+  },
+  id: {
+    type: String,
+    required: true,
+  },
+  total_harga: {
+    type: String,
     required: true,
   },
   cover: {
@@ -83,8 +97,8 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  harga_satuan: {
-    type: Number,
+  harga_produk: {
+    type: String,
     required: true,
   },
 });
@@ -94,34 +108,71 @@ const price = ref(
   new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
-  }).format(props.harga)
+  }).format(props.total_harga)
 );
 
-const hargaSatuan = ref(parseInt(props.harga_satuan));
+const hargaSatuan = ref(parseInt(props.harga_produk));
+const product = reactive({
+  id_user: 0,
+  id_produk: 0,
+  nama_produk: "",
+  harga_produk: 0,
+  jumlah_produk: 0,
+  total_harga: 0,
+  cover: "",
+  max_quantity: 0,
+});
 
-function incrementQuantity() {
+const totalPriceCart = ref(0);
+
+const incrementQuantity = async () => {
   if (quantity.value < props.max_quantity) {
     quantity.value++;
     price.value = new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
     }).format(hargaSatuan.value * quantity.value);
+
+    product.id_user = store.getUserID;
+    product.id_produk = props.id;
+    product.nama_produk = props.nama_produk;
+    product.harga_produk = hargaSatuan.value;
+    product.jumlah_produk = quantity.value;
+    product.total_harga = props.harga * quantity.value;
+    product.cover = props.cover;
+    product.max_quantity = props.max_quantity;
+    await storeProduct({ ...product });
+    // location.reload();
   }
-  // totalPrice.bool = true;
-}
-function dercrementQuantity() {
+};
+
+const dercrementQuantity = async () => {
   if (quantity.value > 1) {
     quantity.value--;
     price.value = new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
     }).format(hargaSatuan.value * quantity.value);
-  }
-}
 
-function remove() {
-  store.removeProduct(props.id);
-}
+    product.id_user = store.getUserID;
+    product.id_produk = props.id;
+    product.nama_produk = props.nama_produk;
+    product.harga_produk = hargaSatuan.value;
+    product.jumlah_produk = quantity.value;
+    product.total_harga = props.harga * quantity.value;
+    product.cover = props.cover;
+    product.max_quantity = props.max_quantity;
+    await storeProduct({ ...product });
+    // location.reload();
+  }
+};
+
+const userId = ref(store.getUserID);
+
+const deleteProductCart = async (id) => {
+  await deleteProduct(userId.value, id);
+  location.reload();
+};
 </script>
 
 <style scoped>
