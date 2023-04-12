@@ -123,11 +123,11 @@ const store = useCartStore();
 store.setUserID();
 
 const { produk, fetchDataProduk } = useFetchProduk(
-  "http://127.0.0.1:8000/api/produk/home"
+  "https://admin.ipnstore.com/api/produk/home"
 );
 
 const { kategori, fetchDataKategori } = useFetchKategori(
-  "http://127.0.0.1:8000/api/kategori/home"
+  "https://admin.ipnstore.com/kategori/home"
 );
 
 onMounted(() => {

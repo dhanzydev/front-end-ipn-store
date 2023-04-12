@@ -25,7 +25,7 @@ export function useFetchAllKategori() {
 
   const fetchDataKategori = async (page = 1) => {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/kategori?page=${page}`
+      `https://admin.ipnstore.com/api/kategori?page=${page}`
     );
     const data = await response.json();
     kategori.data = data;

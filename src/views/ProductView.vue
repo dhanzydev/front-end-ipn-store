@@ -81,7 +81,7 @@ import { computed, onMounted, ref, watch } from "vue";
 
 const { produk, fetchDataProduk } = useFetchAllProduk();
 const { kategori, fetchDataKategori } = useFetchKategori(
-  "http://127.0.0.1:8000/api/kategori/all"
+  "https://admin.ipnstore.com/api/kategori/all"
 );
 
 //Get parameter from url

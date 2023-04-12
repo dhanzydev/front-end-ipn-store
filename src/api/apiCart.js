@@ -10,7 +10,7 @@ export default function useCart() {
   const router = useRouter();
 
   const getDataCart = async (id) => {
-    let response = await axios.get(`http://ipn-store.test/api/cart/${id}`);
+    let response = await axios.get(`https://admin.ipnstore.com/api/cart/${id}`);
     product.value = response.data.data;
     totalPrice.value = new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -22,7 +22,7 @@ export default function useCart() {
   const storeProduct = async (data) => {
     errors.value = "";
     try {
-      await axios.post("http://ipn-store.test/api/cart/post", data);
+      await axios.post("https://admin.ipnstore.com/api/cart/post", data);
     } catch (e) {
       if (e.response.status === 422) {
         errors.value = e.response.data.errors;
@@ -31,7 +31,9 @@ export default function useCart() {
   };
 
   const deleteProduct = async (userId, id) => {
-    await axios.delete(`http://ipn-store.test/api/cart/delete/${userId}/${id}`);
+    await axios.delete(
+      `https://admin.ipnstore.com/api/cart/delete/${userId}/${id}`
+    );
     await router.push({ path: "/cart" });
   };
 

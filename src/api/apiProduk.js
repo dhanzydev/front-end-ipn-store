@@ -26,7 +26,7 @@ export function useFetchAllProduk() {
 
   const fetchDataProduk = async (page = 1) => {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/produk?page=${page}`
+      `https://admin.ipnstore.com/api/produk?page=${page}`
     );
     const data = await response.json();
     produk.data = data;
@@ -44,7 +44,7 @@ export function useSearchProduk(search) {
 
   const fetchDataProdukSearch = async (page = 1) => {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/produk/search/${search}?page=${page}`
+      `https://admin.ipnstore.com/api/produk/search/${search}?page=${page}`
     );
     const data = await response.json();
     produkSearch.data = data;
@@ -62,7 +62,7 @@ export function useFetchDetailProduk(id) {
 
   const fetchDataProduk = async () => {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/produk/detail/${id}`
+      `https://admin.ipnstore.com/api/produk/detail/${id}`
     );
 
     const data = await response.json();

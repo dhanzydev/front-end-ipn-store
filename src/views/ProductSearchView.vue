@@ -69,7 +69,7 @@ const kategoriFilter = ref("");
 const { produkSearch, fetchDataProdukSearch } = useSearchProduk(props.produk);
 const { produk, fetchDataProduk } = useFetchAllProduk();
 const { kategori, fetchDataKategori } = useFetchKategori(
-  "http://127.0.0.1:8000/api/kategori/all"
+  "https://admin.ipnstore.com/kategori/all"
 );
 
 const filterData = computed(() => {

@@ -133,15 +133,14 @@ const customer = reactive({
 
 const userId = ref(store.getUserID);
 
+let productCart = [];
 const getDataCartNew = async () => {
-  // let response = await axios.get(`http://ipn-store.test/api/cart/${id}`);
   const response = await fetch(
-    `http://ipn-store.test/api/cart/${store.getUserID}`
+    `https://admin.ipnstore.com/api/cart/${store.getUserID}`
   );
   const data = await response.json();
   for (let i = 0; i < data.length; i++) {
     productCart.push(data.data);
-    console.log(productCart[i]);
   }
   totalPriceCart.value = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -169,7 +168,7 @@ const submitForm = () => {
     );
   }
   window.open(
-    `https://api.whatsapp.com/send?phone=6281918057525&text=Halo%20Saya%20Ingin%20Memesan%20Barang%20%0A%0A${barang}%0A%0ADengan%20Total%20Pembelian%20adalah%20%0A*${totalPriceCart.value}*%0A%0ABerikut%20ini%20adalah%20alamat%20saya%20%3A%0A%0ANama%20Penerima%20%3A%20${customer.nama}%0ANo%20HP%20Penerima%20%3A%20${customer.no_hp}%0AAlamat%20%3A%20${customer.alamat}%0AKota%20%2F%20Kabupaten%20%3A%20${customer.kota}%20%0AKecamatan%20%3A%20${customer.kecamatan}%0ART%2FRW%20%3A%20${customer.rt_rw}`
+    `https://api.whatsapp.com/send?phone=6281999206198&text=Halo%20Saya%20Ingin%20Memesan%20Barang%20%0A%0A${barang}%0A%0ADengan%20Total%20Pembelian%20adalah%20%0A*${totalPriceCart.value}*%0A%0ABerikut%20ini%20adalah%20alamat%20saya%20%3A%0A%0ANama%20Penerima%20%3A%20${customer.nama}%0ANo%20HP%20Penerima%20%3A%20${customer.no_hp}%0AAlamat%20%3A%20${customer.alamat}%0AKota%20%2F%20Kabupaten%20%3A%20${customer.kota}%20%0AKecamatan%20%3A%20${customer.kecamatan}%0ART%2FRW%20%3A%20${customer.rt_rw}`
   );
 };
 
