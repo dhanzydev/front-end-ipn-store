@@ -94,7 +94,7 @@ const props = defineProps({
     required: true,
   },
   max_quantity: {
-    type: Number,
+    type: String,
     required: true,
   },
   harga_produk: {

@@ -21,9 +21,9 @@
     </div>
   </section>
   <section class="form-delivery mt-5">
-    <div class="container">
-      <p class="fs-4 fw-medium">Detail Pengiriman</p>
-      <form action="" @submit.prevent="submitForm">
+    <form action="" @submit.prevent="submitForm">
+      <div class="container">
+        <p class="fs-4 fw-medium">Detail Pengiriman</p>
         <div class="row">
           <div class="col-lg-6">
             <label for="nama" class="form-label">Nama</label>
@@ -86,18 +86,22 @@
             />
           </div>
         </div>
-      </form>
-      <div class="notification mt-5 rounded">
-        <p>
-          Catatan : Total harga + ongkos kirim yang harus dibayar akan
-          dikonfirmasikan oleh admin, setelah mengirim data pesanan
-        </p>
+        <div class="notification mt-5 rounded">
+          <p>
+            Catatan : Total harga + ongkos kirim yang harus dibayar akan
+            dikonfirmasikan oleh admin, setelah mengirim data pesanan
+          </p>
+        </div>
+        <button class="btn btn-success w-100 mt-4 py-2" type="submit">
+          <img
+            src="/assets/images/whatsapp.png"
+            class="img-fluid me-2"
+            alt=""
+          />
+          Pesan Sekarang
+        </button>
       </div>
-      <button class="btn btn-success w-100 mt-4 py-2" type="submit">
-        <img src="/assets/images/whatsapp.png" class="img-fluid me-2" alt="" />
-        Pesan Sekarang
-      </button>
-    </div>
+    </form>
   </section>
 </template>
 
